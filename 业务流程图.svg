@@ -1,0 +1,140 @@
+<svg viewBox="0 0 1060 920" xmlns="http://www.w3.org/2000/svg" font-family="'PingFang SC','Microsoft YaHei',sans-serif">
+  <!-- background -->
+  <rect width="1060" height="920" fill="#f7f9fc"/>
+  <text x="530" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1a2b4a">多 Agent 投研系统 · 业务流程图</text>
+  <text x="530" y="60" text-anchor="middle" font-size="12" fill="#607089">研究 → 投决 → 风控循环 → 交易 → 复盘（含 Universe 入口与组合层）</text>
+
+  <!-- legend -->
+  <g font-size="11" fill="#3c4043">
+    <rect x="700" y="78" width="14" height="14" rx="3" fill="#34a853"/><text x="720" y="89">通过</text>
+    <rect x="770" y="78" width="14" height="14" rx="3" fill="#ea4335"/><text x="790" y="89">驳回/循环</text>
+    <rect x="860" y="78" width="14" height="14" rx="3" fill="#9aa0a6"/><text x="880" y="89">否 / 终结</text>
+  </g>
+
+  <!-- START -->
+  <rect x="430" y="74" width="200" height="42" rx="21" fill="#1a2b4a"/>
+  <text x="530" y="100" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">START</text>
+
+  <!-- 标的筛选/触发 -->
+  <rect x="420" y="138" width="220" height="46" rx="10" fill="#e8f0fe" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="530" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a3a6b">标的筛选 / 触发（Universe）</text>
+  <text x="530" y="177" text-anchor="middle" font-size="11" fill="#5b7bb0">事件 / 定期扫描 / 人工指定</text>
+
+  <!-- 宏观研究员 -->
+  <rect x="110" y="220" width="230" height="62" rx="10" fill="#fef7e0" stroke="#f9ab00" stroke-width="1.5"/>
+  <text x="225" y="246" text-anchor="middle" font-size="13" font-weight="bold" fill="#7a3e00">宏观研究员</text>
+  <text x="225" y="266" text-anchor="middle" font-size="11" fill="#9a6a1a">大盘走势 / 风险偏好</text>
+  <text x="225" y="282" text-anchor="middle" font-size="11" fill="#9a6a1a">仓位上限建议</text>
+
+  <!-- 行业研究员 -->
+  <rect x="720" y="220" width="230" height="62" rx="10" fill="#fef7e0" stroke="#f9ab00" stroke-width="1.5"/>
+  <text x="835" y="246" text-anchor="middle" font-size="13" font-weight="bold" fill="#7a3e00">行业研究员</text>
+  <text x="835" y="266" text-anchor="middle" font-size="11" fill="#9a6a1a">穿透叙事分析（复用 skill）</text>
+  <text x="835" y="282" text-anchor="middle" font-size="11" fill="#9a6a1a">评级 + 隐含天花板 L</text>
+
+  <!-- 投资经理 -->
+  <rect x="415" y="330" width="230" height="62" rx="10" fill="#fdecdc" stroke="#f2994a" stroke-width="1.5"/>
+  <text x="530" y="356" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3e00">投资经理（组合层）</text>
+  <text x="530" y="376" text-anchor="middle" font-size="11" fill="#b5632a">聚合宏观+行业+基本面+技术面</text>
+  <text x="530" y="392" text-anchor="middle" font-size="11" fill="#b5632a">与当前持仓 diff → 调仓指令集</text>
+
+  <!-- 决策菱形 值得下单? -->
+  <polygon points="530,440 615,495 530,550 445,495" fill="#fff8e1" stroke="#f9ab00" stroke-width="2"/>
+  <text x="530" y="490" text-anchor="middle" font-size="13" font-weight="bold" fill="#7a5200">值得</text>
+  <text x="530" y="508" text-anchor="middle" font-size="13" font-weight="bold" fill="#7a5200">下单?</text>
+
+  <!-- 补充研究/终结 -->
+  <rect x="110" y="468" width="230" height="54" rx="10" fill="#eef1f4" stroke="#9aa0a6" stroke-width="1.5"/>
+  <text x="225" y="490" text-anchor="middle" font-size="13" font-weight="bold" fill="#3c4043">补充研究 / 终结本轮</text>
+  <text x="225" y="510" text-anchor="middle" font-size="11" fill="#70757a">请求研究员补材料 或 关闭</text>
+
+  <!-- 生成下单策略 -->
+  <rect x="415" y="588" width="230" height="54" rx="10" fill="#fdecdc" stroke="#f2994a" stroke-width="1.5"/>
+  <text x="530" y="610" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3e00">生成下单策略</text>
+  <text x="530" y="628" text-anchor="middle" font-size="11" fill="#b5632a">标的/方向/数量/止损止盈</text>
+
+  <!-- 风控审核 -->
+  <rect x="415" y="676" width="230" height="58" rx="10" fill="#fce8e6" stroke="#ea4335" stroke-width="1.5"/>
+  <text x="530" y="700" text-anchor="middle" font-size="13" font-weight="bold" fill="#a50e0e">风控审核（条件边）</text>
+  <text x="530" y="719" text-anchor="middle" font-size="11" fill="#c0392b">硬约束先跑·软约束 LLM 判例外</text>
+
+  <!-- 交易员 -->
+  <rect x="720" y="676" width="230" height="58" rx="10" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+  <text x="835" y="700" text-anchor="middle" font-size="13" font-weight="bold" fill="#14532d">交易员</text>
+  <text x="835" y="719" text-anchor="middle" font-size="11" fill="#3a8a52">TWAP/VWAP 拆单 · 降冲击</text>
+
+  <!-- 成交回报 -->
+  <rect x="720" y="770" width="230" height="54" rx="10" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+  <text x="835" y="792" text-anchor="middle" font-size="13" font-weight="bold" fill="#14532d">成交回报</text>
+  <text x="835" y="810" text-anchor="middle" font-size="11" fill="#3a8a52">成交价/量/冲击成本/滑点</text>
+
+  <!-- 复盘/更新KG/审计 -->
+  <rect x="720" y="852" width="230" height="54" rx="10" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+  <text x="835" y="874" text-anchor="middle" font-size="13" font-weight="bold" fill="#14532d">复盘 / 更新 KG / 审计</text>
+  <text x="835" y="892" text-anchor="middle" font-size="11" fill="#3a8a52">学习闭环 + 合规留痕</text>
+
+  <!-- ===== arrows ===== -->
+  <g stroke="#5b6b82" stroke-width="2" fill="none">
+    <!-- START -> 筛选 -->
+    <path d="M530 116 L530 138"/>
+    <!-- 筛选 -> 分叉 -> 宏观/行业 -->
+    <path d="M530 184 L530 205 L225 205 L225 220"/>
+    <path d="M530 205 L835 205 L835 220"/>
+    <!-- 宏观 -> 投资经理 -->
+    <path d="M225 282 C225 312 415 332 415 330" />
+    <path d="M415 330 C415 312 225 312 225 282" />
+    <!-- 行业 -> 投资经理 (right side) -->
+    <path d="M835 282 C835 312 645 332 645 330"/>
+    <path d="M645 330 C645 312 835 312 835 282"/>
+    <!-- 投资经理 -> 菱形 -->
+    <path d="M530 392 L530 440"/>
+    <!-- 菱形 否 -> 补充 -->
+    <path d="M445 495 L340 495" stroke="#9aa0a6"/>
+    <!-- 补充 -> 终结(本轮) -->
+    <!-- 菱形 是 -> 生成策略 -->
+    <path d="M530 550 L530 588"/>
+    <!-- 生成策略 -> 风控 -->
+    <path d="M530 642 L530 676"/>
+    <!-- 风控 通过 -> 交易员 -->
+    <path d="M645 705 L720 705" stroke="#34a853"/>
+    <!-- 风控 驳回 -> 投资经理 (red dashed loop) -->
+    <path d="M415 705 C300 705 300 360 415 360" stroke="#ea4335" stroke-dasharray="6 4"/>
+    <!-- 交易员 -> 成交回报 -->
+    <path d="M835 734 L835 770"/>
+    <!-- 成交回报 -> 复盘 -->
+    <path d="M835 824 L835 852"/>
+    <!-- 复盘 -> END -->
+  </g>
+
+  <!-- arrow heads -->
+  <g fill="#5b6b82">
+    <path d="M530 138 l-5 -8 l10 0 z"/>
+    <path d="M225 220 l-5 -8 l10 0 z"/>
+    <path d="M835 220 l-5 -8 l10 0 z"/>
+    <path d="M530 440 l-5 -8 l10 0 z"/>
+    <path d="M530 588 l-5 -8 l10 0 z"/>
+    <path d="M530 676 l-5 -8 l10 0 z"/>
+    <path d="M835 770 l-5 -8 l10 0 z"/>
+    <path d="M835 852 l-5 -8 l10 0 z"/>
+  </g>
+  <path d="M340 495 l8 -4 l0 8 z" fill="#9aa0a6"/>
+  <path d="M720 705 l-8 -4 l0 8 z" fill="#34a853"/>
+  <path d="M415 360 l8 -4 l0 8 z" fill="#ea4335"/>
+
+  <!-- edge labels -->
+  <g font-size="11" font-weight="bold">
+    <text x="392" y="500" fill="#9aa0a6">否</text>
+    <text x="668" y="698" fill="#34a853">通过</text>
+    <text x="250" y="540" fill="#ea4335">驳回 · 带风险反馈 (≤N 次)</text>
+    <text x="372" y="455" fill="#7a5200">是</text>
+  </g>
+
+  <!-- 终结(本轮) terminator -->
+  <rect x="110" y="852" width="230" height="54" rx="10" fill="#eef1f4" stroke="#9aa0a6" stroke-width="1.5"/>
+  <text x="225" y="874" text-anchor="middle" font-size="13" font-weight="bold" fill="#3c4043">END（本轮终结）</text>
+  <text x="225" y="892" text-anchor="middle" font-size="11" fill="#70757a">审计留痕后关闭</text>
+  <g stroke="#9aa0a6" stroke-width="2" fill="none">
+    <path d="M340 495 L340 540 L225 540 L225 852"/>
+  </g>
+  <path d="M225 852 l-5 -8 l10 0 z" fill="#9aa0a6"/>
+</svg>

@@ -1,0 +1,99 @@
+# 多 Agent 投研系统配置（仅 A 股）
+market: A_SHARE
+
+llm:
+  provider: mock          # mock（离线）| openai（真实）
+  model: gpt-4o-mini
+  temperature: 0.0
+  api_key_env: OPENAI_API_KEY
+  base_url: ""
+
+data:
+  provider: mock          # mock（离线）| tdx（待接入 tdx-connector）
+
+# 风控循环最大次数（防死锁）
+max_loop: 3
+# 默认下单策略（可在 strategies.registry 中扩展后切换）
+default_strategy: TWAP
+# 是否启用人工 HITL 检查点
+hitl_enabled: true
+
+# 风控阶段人工审核确认（HITL）：对风控结论（APPROVED/REJECTED/EXCEPTION）做人工审核
+# on_reject: rejudge=否决后回落投资经理重研判；terminate=否决即终结进审核者
+risk_review:
+  on_reject: rejudge
+
+# 投委会/终审委员（IC Gate，HITL）：对重大投决做人工终审
+# materiality 任一门槛触发即视为重大；on_reject 同 risk_review
+ic_gate:
+  on_reject: rejudge
+  materiality:
+    single_position_weight: 0.05   # 单票目标权重超此值=重大
+    total_deviation: 0.10          # 调仓总偏离超此值=重大
+    exception_is_material: true    # 风控例外结论一律重大
+
+# 合规（与风控合并为「风险合规」岗位）
+compliance:
+  restricted_list: []              # 禁投标的（ST 由 risk_limits.forbid_st 控制）
+  silent_period: []                # 静默期/内幕信息隔离标的
+
+# 量化/因子研究员（与基本面正交的信号源）
+quant:
+  enabled: true
+  momentum_window: 20
+  neutral_band: 0.02
+
+# 舆情/事件监控员（产出需重研信号）
+event_monitor:
+  enabled: true
+  negative_keywords: ["立案", "调查", "处罚", "退市", "商誉减值", "暴雷"]
+  material_keywords: ["超预期", "重大", "并购", "重组", "定增", "中标", "举牌"]
+
+# 绩效归因师（投后归因）
+attribution:
+  enabled: true
+
+# 算法交易/执行优化（合并进交易员岗位）
+execution_desk:
+  default_strategy: TWAP
+  large_notional: 5000000.0
+  low_adv_ratio: 0.3
+
+# 初始组合
+initial_cash: 10000000.0
+initial_holdings: []
+
+# 风险限额（硬约束+软约束）
+risk_limits:
+  single_position_max: 0.08
+  industry_concentration_max: 0.25
+  total_position_max: 0.80
+  bear_market_position_max: 0.50
+  adv_liquidity_pct: 0.10
+  stop_loss_pct: 0.08
+  portfolio_drawdown_pause: 0.15
+  var_1d_95_max: 0.02
+  forbid_st: true
+  allow_short: false
+
+# 观察标的池（Universe 入口；真实可接事件/扫描）
+watchlist:
+  - ticker: "600519"
+    name: "贵州茅台"
+    industry: "白酒"
+  - ticker: "000001"
+    name: "平安银行"
+    industry: "银行"
+  - ticker: "300750"
+    name: "宁德时代"
+    industry: "新能源"
+
+# KG 时效性：周度置信度衰减半衰期（天）
+kg_decay_half_life: 30
+
+# 调度（冲刺项⑤）：钩子体真实落地；真实部署可由 OS cron / Celery 直接调用 trigger()
+scheduler:
+  post_market: { hour: 15, minute: 5 }          # 收盘后写库 + 推送 + 台账
+  pre_market:  { hour: 9,  minute: 0 }          # 盘前关注清单
+  weekly:      { hour: 17, minute: 0, weekdays: [4] }  # 周五收盘后周度复盘
+  # event 槽不定时，仅由 notify_event（重大事件）触发重研

@@ -1,0 +1,35 @@
+# ── Python ──
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+
+# ── Runtime artifacts (generated demo outputs) ──
+run_artifacts/
+
+# ── Local environment / secrets ──
+.env
+*.key
+credentials*
+
+# ── Editor / OS ──
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ── WorkBuddy internal ──
+.workbuddy/
+
+# ── Packaging leftovers ──
+*.zip
+_cloud_deploy/
+_weiyun_pkg/
+_skill_tmp/
+_skill_raw.zip
